@@ -8,7 +8,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserDto createUser(UserDto userDetails) {
-    userDetails.setId(UUID.randomUUID().toString());
+    userDetails.setUserId(UUID.randomUUID().toString());
     return null;
   }
 
