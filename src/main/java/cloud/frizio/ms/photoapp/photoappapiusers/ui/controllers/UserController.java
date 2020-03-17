@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cloud.frizio.ms.photoapp.photoappapiusers.service.UserService;
 import cloud.frizio.ms.photoapp.photoappapiusers.shared.UserDto;
 import cloud.frizio.ms.photoapp.photoappapiusers.ui.model.User;
+import cloud.frizio.ms.photoapp.photoappapiusers.ui.model.UserResponseModel;
 
 @RestController
 @RequestMapping("/users")
@@ -34,12 +35,13 @@ public class UserController {
   }
 
   @PostMapping
-  public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
+  public ResponseEntity<UserResponseModel> createUser(@Valid @RequestBody User user) {
     ModelMapper modelMapper  = new ModelMapper();
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     UserDto userDto = modelMapper.map(user, UserDto.class);
-    userService.createUser(userDto);
-    return new ResponseEntity<>(HttpStatus.CREATED); 
+    UserDto createdUser = userService.createUser(userDto);
+    UserResponseModel userBody = modelMapper.map(createdUser, UserResponseModel.class);
+    return ResponseEntity.status(HttpStatus.CREATED).body(userBody); 
   }
 
 }
