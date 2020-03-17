@@ -1,4 +1,4 @@
-package cloud.frizio.ms.photoapp.photoappapiusers.ui.model;
+package cloud.frizio.ms.photoapp.api.users.ui.model;
 
 public class UserResponseModel {
 

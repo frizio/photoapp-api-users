@@ -1,4 +1,4 @@
-package cloud.frizio.ms.photoapp.photoappapiusers;
+package cloud.frizio.ms.photoapp.api.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class DemoApplication {
+public class PhotoAppApiUsers {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(PhotoAppApiUsers.class, args);
 	}
 
 }

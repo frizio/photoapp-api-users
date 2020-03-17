@@ -1,4 +1,4 @@
-package cloud.frizio.ms.photoapp.photoappapiusers.service;
+package cloud.frizio.ms.photoapp.api.users.service;
 
 import java.util.UUID;
 
@@ -7,29 +7,29 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cloud.frizio.ms.photoapp.photoappapiusers.data.UserEntity;
-import cloud.frizio.ms.photoapp.photoappapiusers.data.UsersRepository;
-import cloud.frizio.ms.photoapp.photoappapiusers.shared.UserDto;
+import cloud.frizio.ms.photoapp.api.users.data.UserEntity;
+import cloud.frizio.ms.photoapp.api.users.data.UserRepository;
+import cloud.frizio.ms.photoapp.api.users.shared.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-  UsersRepository usersRepository;
+  UserRepository userRepository;
 
   @Autowired
-  public UserServiceImpl(UsersRepository usersRepository) {
-    this.usersRepository = usersRepository;
+  public UserServiceImpl(UserRepository userRepository) {
+    this.userRepository = userRepository;
   }
 
 
   @Override
   public UserDto createUser(UserDto userDetails) {
-    userDetails.setUserId(UUID.randomUUID().toString());
     ModelMapper modelMapper  = new ModelMapper();
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+    userDetails.setUserId(UUID.randomUUID().toString());
     UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
     userEntity.setEncryptedPassword("HASH1234");
-    usersRepository.save(userEntity);
+    userRepository.save(userEntity);
     UserDto userCreated = modelMapper.map(userEntity, UserDto.class);
     return userCreated;
   }

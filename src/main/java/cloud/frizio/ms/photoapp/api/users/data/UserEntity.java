@@ -1,4 +1,4 @@
-package cloud.frizio.ms.photoapp.photoappapiusers.data;
+package cloud.frizio.ms.photoapp.api.users.data;
 
 import java.io.Serializable;
 

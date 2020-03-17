@@ -1,27 +1,18 @@
-package cloud.frizio.ms.photoapp.photoappapiusers.ui.model;
+package cloud.frizio.ms.photoapp.api.users.shared;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-public class User {
+public class UserDto implements Serializable {
 
-  @NotNull(message = "First name cannot be null")
-  @Size(min = 2, message = "First name length > 2")
+  private static final long serialVersionUID = -1723723456170659344L;
+
   private String firstName;
-  
-  @NotNull(message = "Last name cannot be null")
-  @Size(min = 2, message = "Last name length > 2")
   private String lastName;
-  
-  @NotNull(message = "Email cannot be null")
-  @Email
   private String email;
-
-  @NotNull(message = "First name cannot be null")
-  @Size(min = 8, max = 12, message = "Password length > 8 and < 12")
   private String password;
 
+  private String userId;
+  private String encryptedPassword;
 
   public String getFirstName() {
     return this.firstName;
@@ -54,5 +45,23 @@ public class User {
   public void setPassword(String password) {
     this.password = password;
   }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public String getEncryptedPassword() {
+    return this.encryptedPassword;
+  }
+
+  public void setEncryptedPassword(String encryptedPassword) {
+    this.encryptedPassword = encryptedPassword;
+  }
+
+
 
 }
